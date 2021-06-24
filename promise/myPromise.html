@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "utf-8" />
+    <title>MyPromise</title>
+    <script src="myPromise.js"></script>
+  </head>
+  <body></body>
+
+  <script>
+    let mPro = new MyPromise((resolve, reject) => {
+      resolve('aaa')
+    }).then(() => {
+      return 'sss'
+    }, () => {
+
+    }).then(() => {
+
+    })
+
+    console.log(mPro)
+
+  </script>
+
+
+</html>

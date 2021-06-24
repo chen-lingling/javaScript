@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Proxy代理</title>
+</head>
+
+<body>
+  <input type="text" v-model="title" />
+  <input type="text" v-model="title" />
+  <input type="text" v-model="content" />
+  <h4 v-bind="title">hello</h4>
+</body>
+<script>
+  /**
+   * Proxy代理
+   * vue3双向绑定实现原理
+   * 
+   */
+  function View() {
+    let proxy = new Proxy({}, {
+      set(obj, property, value) {
+        console.log(obj, property, value)
+        let vTargets = document.querySelectorAll(`[v-model="${property}"]`)
+        vTargets.forEach((item) => {
+          item.value = value
+        })
+        let bTargets = document.querySelectorAll(`[v-bind="${property}"]`)
+        bTargets.forEach((item) => {
+          item.innerHTML = value
+        })
+      },
+      get(obj, property) {
+
+      }
+    })
+    this.init = function() {
+      let els = document.querySelectorAll('[v-model]')
+      els.forEach((item, key) => {
+        item.addEventListener('keyup', (el) => {
+          console.log(el)
+          proxy[el.target.getAttribute('v-model')] = el.target.value
+        })
+      })
+    }
+  }
+  let view = new View()
+  view.init()
+</script>
+
+</html>

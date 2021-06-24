@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "utf-8" />
+    <title>GJLG</title>
+    <script src="HD.js"></script>
+  </head>
+  <body></body>
+  <script>
+    new HD((resolve, reject) => {
+      // setTimeout(() => {
+        resolve('解决')
+      // });
+      // reject('拒绝')
+      console.log('new')
+    }).then((value) => {
+      console.log('resolve', value)
+    }, (reason) => {
+      console.log('reject', reason)
+    })
+    console.log('MyPromise')
+    // let p1 = new HD((resolve, reject) => {
+    //   setTimeout(() => {
+    //     reject('p10')
+        
+    //   }, 3000);
+    // })
+    // let p2 = new HD((resolve, reject) => {
+    //   setTimeout(() => {
+    //     reject('p2')
+        
+    //   }, 1000);
+    // })
+    // HD.race([p1, p2]).then((values) => {
+    //   console.log(values)
+    // }, (reason) => {
+    //   console.log('error', reason)
+    // })
+  </script>
+</html>
