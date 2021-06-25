@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Proxy代理</title>
+  <style>
+    .error {
+      border: 1px solid red
+    }
+    input {
+      outline: none;
+      border: solid 10px #ddd
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" validate rule="max:12,min:3" />
+  <input type="text" validate rule="max:3,isNumber" />
+</body>
+<script>
+  class Validate {
+    max(value, length) {
+      return value.length <= length;
+    }
+    min (value, length) {
+      return value.length >= length;
+    }
+    isNumber(value) {
+      return /^\d+$/.test(value)
+    }
+  }
+  function ProxyFactory(targets) {
+    return new Proxy(targets, {
+      set(targets, key, element) {
+        const rule = element.getAttribute('rule')
+        const validate = new Validate();
+        let state = rule.split(',').every(rule => {
+          const ruleInfo = rule.split(':')
+          return validate[ruleInfo[0]](element.value, ruleInfo[1])
+        })
+        element.classList[!state ? 'add' : 'remove']('error')
+        return true
+      },
+      get(targets, key) {
+        return targets[key]
+      },
+    })
+  }
+  let targets = document.querySelectorAll("[validate]")
+  const proxy = ProxyFactory(targets)
+  proxy.forEach((item, index) => {
+    item.addEventListener('keyup', (event) => {
+      proxy[index] = event.target
+    })
+  });
+</script>
+
+</html>
