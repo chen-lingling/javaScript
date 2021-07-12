@@ -1,7 +1,7 @@
-// /**
-//  * @param {number[]} nums
-//  * @return {number}
-//  */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */ 
 //  var removeDuplicates = function(nums) {
 //   let result = []
 //   for (let i = 0; i< nums.length; i++) {

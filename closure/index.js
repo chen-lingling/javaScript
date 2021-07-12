@@ -1,3 +1,24 @@
+/**
+ * 1、如何产生闭包
+ *  当一个嵌套的内部（子）函数引用了嵌套的外部（父）函数的变量（函数）时，就产生了闭包
+ * 2、闭包是什么
+ *  理解一：闭包是嵌套的内部函数
+ *  理解二：包含被引用变量（函数）的对象
+ *  注意：闭包存在于嵌套的内部函数中
+ * 3、闭包产生的条件
+ *  函数嵌套
+ *  内部函数引用了外部函数变量
+ */
+function fn1() {
+  var a = 'a'
+  var b = 'b'
+  function fn2() {
+    console.log(a)
+  }
+  fn2()
+}
+fn1()
+
 // function closure() {
 //   let n = 1;
 //   return function sum() {
@@ -112,4 +133,3 @@ let lessons = [
 
 // let a = lessons.sort(order('click', 'desc'))
 // console.table(a)
-
