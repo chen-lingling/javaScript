@@ -28,8 +28,5 @@
       }
       ++ fast
    }
-   console.log(slow)
   return nums.slice(0, slow)
 };
-
-console.log(removeDuplicates([1, 1, 2]))
